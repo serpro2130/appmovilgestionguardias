@@ -1,0 +1,42 @@
+// registro de datos
+
+const registro = await addRegistroEspecifico("Usuarios", uid, {
+        token,
+        displayName,
+        photoURL,
+        email,
+        phoneNumber,
+        fechacreacion: new Date(),
+      });
+
+export const addRegistroEspecifico = async (coleccion, doc, data) => {
+  const resultado = { error: "", statusreponse: false };
+
+  await db
+    .collection(coleccion)
+    .doc(doc)
+    .set(data, { merge: true })
+    .then((response) => {
+      resultado.statusreponse = true;
+    })
+    .catch((err) => {
+      resultado.error = err;
+    });
+
+  return resultado;
+};
+
+//Con esta función inserta en la colección usuarios la url de la imagen.
+export const actualilzarPerfil = async (data) => {
+  let respuesta = false;
+  await firebase
+    .auth()
+    .currentUser.updateProfile(data)
+    .then((response) => {
+      respuesta = true;
+    });
+
+  return respuesta;
+};
+
+https://firebase.google.com/docs/firestore/manage-data/add-data?hl=es

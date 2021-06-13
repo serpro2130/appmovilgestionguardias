@@ -1,0 +1,142 @@
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
+await AsyncStorage.setItem('user', JSON.stringify(usuario));
+
+import React, {useState} from 'react';
+import {createStackNavigator, TransitionPresets} from '@react-navigation/stack';
+import {
+  AddIncident,
+  AddUser,
+  AddVisit,
+  Assistance,
+  ChangeLocation,
+  EditUser,
+  MainScreen,
+  CloseDaily,
+  ExitUser,
+} from 'views';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import {InitNavigator} from './InitNavigator';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import {_} from 'lodash';
+
+const Stack = createStackNavigator();
+
+export const MainStackNavigation = () => {
+  const [isSignedIn, setIsSignedIn] = useState(false);
+
+  // SecureStore.deleteItemAsync("user");
+
+  setInterval(async () => {
+    const result = await AsyncStorage.getItem('user');
+    const obj = JSON.parse(result);
+    const signed = _.get(obj, 'isSignIn', false);
+
+    if (Boolean(signed)) {
+      setIsSignedIn(true);
+    } else {
+      setIsSignedIn(false);
+    }
+  }, 1000);
+  return (
+    <Stack.Navigator>
+      {!isSignedIn ? (
+        <Stack.Screen
+          name="InitNavigator"
+          component={InitNavigator}
+          options={{headerShown: false}}
+        />
+      ) : (
+        <>
+          <Stack.Screen
+            name="MainScreen"
+            component={MainScreen}
+            options={{headerShown: false}}
+          />
+          <Stack.Screen
+            name="AddIncident"
+            component={AddIncident}
+            options={{title: 'REGISTRAR INCIDENTE', headerTitleAlign: 'center'}}
+          />
+          <Stack.Screen
+            name="AddUser"
+            component={AddUser}
+            options={{
+              title: 'Registrar Nuevo Usuario',
+              headerTitleAlign: 'center',
+              headerRight: () => (
+                <Icon name="account" size={30} color={'#000'} />
+              ),
+            }}
+          />
+          <Stack.Screen
+            name="AddVisit"
+            component={AddVisit}
+            options={{title: 'REGISTRAR ENTRADA', headerTitleAlign: 'center'}}
+          />
+          <Stack.Screen
+            name="ExitUser"
+            component={ExitUser}
+            options={{title: 'SALIDAS', headerTitleAlign: 'center'}}
+          />
+          <Stack.Screen
+            name="ChangeLocation"
+            component={ChangeLocation}
+            options={{
+              title: 'CAMBIAR UBICACIÓN DE LA TABLET',
+              headerTitleAlign: 'center',
+            }}
+          />
+          <Stack.Screen name="EditUser" component={EditUser} />
+          <Stack.Screen
+            name="CloseDaily"
+            component={CloseDaily}
+            options={{title: 'CERRAR GESTIÓN', headerTitleAlign: 'center'}}
+          />
+        </>
+      )}
+    </Stack.Navigator>
+  );
+};
+
+1. Cuando creas el usuario y creas la colección usuario con el rol debes llamar a asynStorage y guardas todo el objetio usuario incluyendo el rol.
+
+await AsyncStorage.setItem('user', JSON.stringify(usuario));
+
+2. Debes crear una lógica con un timer en el swichnavigator que va a estar validando cada segundo si existe el user en el asyncstorage
+
+setInterval(async () => {
+    const result = await AsyncStorage.getItem('user');
+    const obj = JSON.parse(result);
+    const signed = _.get(obj, 'isSignIn', false);
+
+    if (Boolean(signed)) {
+      setIsSignedIn(true);
+    } else {
+      setIsSignedIn(false);
+    }
+  }, 1000);
+
+  3. Obtienes el objeto de usuario, lo pasas a un estado y en el stack navigator colocas la condicional
+  <Stack.Navigator>
+      {!isSignedIn ? (
+        <Stack.Screen
+          name="InitNavigator"
+          component={InitNavigator}
+          options={{headerShown: false}}
+        />
+      ) : (
+        <>
+          <Stack.Screen
+            name="MainScreen"
+            component={MainScreen}
+            options={{headerShown: false}}
+          />{
+
+rol ==="1" && <Stack.screen name="Supervisor" componente={StackDelSupervisor}/>
+
+rol === "2" && <Stack.Screen name ="cliente" component ={StackCliente}/>
+
+mira este ejemplo es aún más fácil
+
+https://stackoverflow.com/questions/60355400/how-to-use-createstacknavigator-to-create-different-home-screens-based-on-authen
