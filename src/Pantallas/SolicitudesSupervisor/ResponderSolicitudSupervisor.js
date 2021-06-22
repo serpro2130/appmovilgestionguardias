@@ -189,7 +189,9 @@ export default function ResponderSolicitudSupervisor(props) {
       />
       <Input
         placeholder="Valor total del servicio"
-        onChangeText={(text) => setValorTotal(text)}
+        onChangeText={(text) =>
+          setValorTotal(`${parseInt(precioServicio) * parseInt(numeroPuestos)}`)
+        }
         inputStyle={styles.input}
         errorMessage={errores.valorTotal}
         value={valorTotal}
