@@ -153,7 +153,7 @@ export default function ResponderSolicitudSupervisor(props) {
         value={direccion}
       />
       <Input
-        placeholder="Fecha"
+        placeholder="Fecha dd/mm/yyyy"
         onChangeText={(text) => setFecha(text)}
         inputStyle={styles.input}
         errorMessage={errores.fecha}

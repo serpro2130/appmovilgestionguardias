@@ -168,7 +168,7 @@ export default function EditarGuardia(props) {
         value={direccionGuardia}
       />
       <Input
-        placeholder="Fecha ingreso"
+        placeholder="Fecha ingreso dd/mm/yyyy"
         onChangeText={(text) => setFechaIngreso(text)}
         inputStyle={styles.input}
         errorMessage={errores.fechaIngreso}

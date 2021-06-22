@@ -12,6 +12,7 @@ import { map, size, filter, isEmpty } from "lodash";
 import { useNavigation } from "@react-navigation/native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { addRegistro, ObtenerUsuario } from "../../Utils/Acciones";
+import { Picker } from "native-base";
 
 export default function RegistrarTurno() {
   const [nombreGuardia, setNombreGuardia] = useState("");
@@ -103,17 +104,47 @@ export default function RegistrarTurno() {
         errorMessage={errores.puestoTrabajo}
       />
       <Input
-        placeholder="Fecha del turno"
+        placeholder="Fecha dd/mm/yyyy"
         onChangeText={(text) => setFechaTurno(text)}
         inputStyle={styles.input}
         errorMessage={errores.fechaTurno}
       />
-      <Input
+      {/* <Input
         placeholder="Horario del turno"
         onChangeText={(text) => setHorarioTurno(text)}
         inputStyle={styles.input}
         errorMessage={errores.horarioTurno}
-      />
+      /> */}
+      <View
+        style={{
+          width: "90%",
+          height: 90,
+          alignItems: "center",
+          flexDirection: "row",
+        }}
+      >
+        <Text
+          style={{
+            width: "40%",
+            fontSize: 16,
+            fontStyle: "italic",
+            marginLeft: 5,
+          }}
+        >
+          Seleccione horario del turno
+        </Text>
+        <Picker
+          note
+          mode="dialog"
+          style={{ width: 100, height: 60 }}
+          // selectedValue={hora}
+          onValueChange={(value) => setHorarioTurno(value)}
+        >
+          <Picker.Item label="Escoja" value="0" />
+          <Picker.Item label="Diurno" value="Diurno" />
+          <Picker.Item label="Nocturno" value="Nocturno" />
+        </Picker>
+      </View>
       <Button
         title="Agregar Turno"
         buttonStyle={styles.btnaddnew}

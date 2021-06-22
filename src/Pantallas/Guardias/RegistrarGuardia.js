@@ -12,6 +12,7 @@ import { map, size, filter, isEmpty } from "lodash";
 import { useNavigation } from "@react-navigation/native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { addRegistro, ObtenerUsuario } from "../../Utils/Acciones";
+import { Picker } from "native-base";
 
 export default function RegistrarGuardia() {
   const [nombreGuardia, setNombreGuardia] = useState("");
@@ -139,7 +140,7 @@ export default function RegistrarGuardia() {
         errorMessage={errores.direccionGuardia}
       />
       <Input
-        placeholder="Fecha ingreso"
+        placeholder="Fecha ingreso dd/mm/yyyy"
         onChangeText={(text) => setFechaIngreso(text)}
         inputStyle={styles.input}
         errorMessage={errores.fechaIngreso}
@@ -150,18 +151,78 @@ export default function RegistrarGuardia() {
         inputStyle={styles.input}
         errorMessage={errores.puestoTrabajo}
       />
-      <Input
+      {/* <Input
         placeholder="Bachiller"
         onChangeText={(text) => setBachiller(text)}
         inputStyle={styles.input}
         errorMessage={errores.bachiller}
-      />
-      <Input
+      /> */}
+      <View
+        style={{
+          width: "90%",
+          height: 90,
+          alignItems: "center",
+          flexDirection: "row",
+        }}
+      >
+        <Text
+          style={{
+            width: "40%",
+            fontSize: 16,
+            fontStyle: "italic",
+            marginLeft: 5,
+          }}
+        >
+          Seleccione formación
+        </Text>
+        <Picker
+          note
+          mode="dialog"
+          style={{ width: 100, height: 60 }}
+          // selectedValue={hora}
+          onValueChange={(value) => setBachiller(value)}
+        >
+          <Picker.Item label="Escoja" value="0" />
+          <Picker.Item label="Secundaria" value="Secundaria" />
+          <Picker.Item label="Universitaria" value="Universitaria" />
+        </Picker>
+      </View>
+      {/* <Input
         placeholder="Curso guardia"
         onChangeText={(text) => setCursoGuardia(text)}
         inputStyle={styles.input}
         errorMessage={errores.cursoGuardia}
-      />
+      /> */}
+      <View
+        style={{
+          width: "90%",
+          height: 90,
+          alignItems: "center",
+          flexDirection: "row",
+        }}
+      >
+        <Text
+          style={{
+            width: "40%",
+            fontSize: 16,
+            fontStyle: "italic",
+            marginLeft: 5,
+          }}
+        >
+          Seleccione curso
+        </Text>
+        <Picker
+          note
+          mode="dialog"
+          style={{ width: 100, height: 60 }}
+          // selectedValue={hora}
+          onValueChange={(value) => setCursoGuardia(value)}
+        >
+          <Picker.Item label="Escoja" value="0" />
+          <Picker.Item label="Guardia" value="Guardia" />
+          <Picker.Item label="Supervisor" value="Supervisor" />
+        </Picker>
+      </View>
       <Button
         title="Agregar Guardia"
         buttonStyle={styles.btnaddnew}

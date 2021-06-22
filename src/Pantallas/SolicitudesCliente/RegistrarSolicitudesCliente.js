@@ -12,7 +12,6 @@ import { map, size, filter, isEmpty } from "lodash";
 import { useNavigation } from "@react-navigation/native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { addRegistro, ObtenerUsuario } from "../../Utils/Acciones";
-
 import { Picker } from "native-base";
 
 //import DateTimePickerModal from "react-native-modal-datetime-picker";
@@ -147,7 +146,7 @@ export default function RegistrarSolicitudesCliente() {
         onCancel={hideDatePicker}
       /> */}
       <Input
-        placeholder="Fecha día/mes/año"
+        placeholder="Fecha dd/mm/yyyy"
         onChangeText={(text) => setFecha(text)}
         inputStyle={styles.input}
         errorMessage={errores.fecha}

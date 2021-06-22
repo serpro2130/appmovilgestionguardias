@@ -112,7 +112,7 @@ export default function EditarAdelanto(props) {
         value={nombreGuardia}
       />
       <Input
-        placeholder="Fecha adelanto"
+        placeholder="Fecha dd/mm/yyyy"
         onChangeText={(text) => setFechaAdelanto(text)}
         inputStyle={styles.input}
         errorMessage={errores.fechaAdelanto}

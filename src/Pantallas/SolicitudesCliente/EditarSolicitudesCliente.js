@@ -132,7 +132,7 @@ export default function EditarSolicitudesCliente(props) {
         value={direccion}
       />
       <Input
-        placeholder="Fecha día/mes/año"
+        placeholder="Fecha dd/mm/yyyy"
         onChangeText={(text) => setFecha(text)}
         inputStyle={styles.input}
         errorMessage={errores.fecha}

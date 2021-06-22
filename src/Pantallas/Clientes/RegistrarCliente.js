@@ -12,6 +12,7 @@ import { map, size, filter, isEmpty } from "lodash";
 import { useNavigation } from "@react-navigation/native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { addRegistro, ObtenerUsuario } from "../../Utils/Acciones";
+import { Picker } from "native-base";
 
 export default function RegistrarCliente() {
   const [nombreCliente, setNombreCliente] = useState("");
@@ -109,17 +110,48 @@ export default function RegistrarCliente() {
         errorMessage={errores.direccionCliente}
       />
       <Input
-        placeholder="Fecha inicio servicio"
+        placeholder="Inicio servicio dd/mm/yyyy"
         onChangeText={(text) => setFechaInicioServicio(text)}
         inputStyle={styles.input}
         errorMessage={errores.fechaInicioServicio}
       />
-      <Input
+      {/* <Input
         placeholder="Tipo servicio"
         onChangeText={(text) => setTipoServicio(text)}
         inputStyle={styles.input}
         errorMessage={errores.tipoServicio}
-      />
+      /> */}
+      <View
+        style={{
+          width: "90%",
+          height: 90,
+          alignItems: "center",
+          flexDirection: "row",
+        }}
+      >
+        <Text
+          style={{
+            width: "40%",
+            fontSize: 16,
+            fontStyle: "italic",
+            marginLeft: 5,
+          }}
+        >
+          Seleccione tipo servicio
+        </Text>
+        <Picker
+          note
+          mode="dialog"
+          style={{ width: 100, height: 60 }}
+          // selectedValue={hora}
+          onValueChange={(value) => setTipoServicio(value)}
+        >
+          <Picker.Item label="Escoja" value="0" />
+          <Picker.Item label="8 horas" value="8 horas" />
+          <Picker.Item label="12 horas" value="12 horas" />
+          <Picker.Item label="24 horas" value="24 horas" />
+        </Picker>
+      </View>
       <Input
         placeholder="Número puestos"
         onChangeText={(text) => setNumeroPuestos(text)}

@@ -105,13 +105,13 @@ export default function RegistrarDocumento() {
         errorMessage={errores.nombreInstitucion}
       />
       <Input
-        placeholder="Fecha de presentación"
+        placeholder="Presentar dd/mm/yyyy"
         onChangeText={(text) => setFechaPresentacion(text)}
         inputStyle={styles.input}
         errorMessage={errores.fechaPresentacion}
       />
       <Input
-        placeholder="Fecha presentada"
+        placeholder="Presentado dd/mm/yyyy"
         onChangeText={(text) => setFechaPresentada(text)}
         inputStyle={styles.input}
         errorMessage={errores.fechaPresentada}

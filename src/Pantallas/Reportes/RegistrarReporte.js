@@ -110,7 +110,7 @@ export default function RegistrarReporte() {
         errorMessage={errores.puestoTrabajo}
       />
       <Input
-        placeholder="Fecha día/mes/año "
+        placeholder="Fecha dd/mm/yyyy "
         onChangeText={(text) => setFechaReporte(text)}
         inputStyle={styles.input}
         errorMessage={errores.fechaReporte}

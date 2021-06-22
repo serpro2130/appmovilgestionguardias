@@ -132,7 +132,7 @@ export default function EditarCliente(props) {
         value={direccionCliente}
       />
       <Input
-        placeholder="Fecha inicio servicio"
+        placeholder="Inicio servicio dd/mm/yyyy"
         onChangeText={(text) => setFechaInicioServicio(text)}
         inputStyle={styles.input}
         errorMessage={errores.fechaInicioServicio}

@@ -126,7 +126,7 @@ export default function EditarTurno(props) {
         value={puestoTrabajo}
       />
       <Input
-        placeholder="Fecha del turno"
+        placeholder="Fecha dd/mm/yyyy"
         onChangeText={(text) => setFechaTurno(text)}
         inputStyle={styles.input}
         errorMessage={errores.fechaTurno}

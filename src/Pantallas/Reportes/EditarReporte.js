@@ -133,7 +133,7 @@ export default function EditarReporte(props) {
         value={puestoTrabajo}
       />
       <Input
-        placeholder="Fecha del reporte"
+        placeholder="Fecha dd/mm/yyyy"
         onChangeText={(text) => setFechaReporte(text)}
         inputStyle={styles.input}
         errorMessage={errores.fechaReporte}

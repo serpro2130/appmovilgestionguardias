@@ -126,14 +126,14 @@ export default function EditarDocumento(props) {
         value={nombreInstitucion}
       />
       <Input
-        placeholder="Fecha de presentación"
+        placeholder="Presentar dd/mm/yyyy"
         onChangeText={(text) => setFechaPresentacion(text)}
         inputStyle={styles.input}
         errorMessage={errores.fechaPresentacion}
         value={fechaPresentacion}
       />
       <Input
-        placeholder="Fecha presentada"
+        placeholder="Presentado dd/mm/yyyy"
         onChangeText={(text) => setFechaPresentada(text)}
         inputStyle={styles.input}
         errorMessage={errores.fechaPresentada}

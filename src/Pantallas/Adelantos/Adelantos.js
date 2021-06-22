@@ -88,7 +88,7 @@ function Adelanto(props) {
       <View style={styles.viewmedio}>
         <Text style={styles.nombreDocumento}>{nombreGuardia}</Text>
         <Text style={styles.nombreInstitucion}>{fechaAdelanto}</Text>
-        <Text style={styles.fechaPresentacion}>{montoAdelanto}</Text>
+        <Text style={styles.fechaPresentacion}>${montoAdelanto}</Text>
       </View>
       <View style={styles.iconbar}>
         <View style={styles.iconedit}>

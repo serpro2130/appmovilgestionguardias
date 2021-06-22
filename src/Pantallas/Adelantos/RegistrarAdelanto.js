@@ -91,7 +91,7 @@ export default function RegistrarAdelanto() {
         errorMessage={errores.nombreGuardia}
       />
       <Input
-        placeholder="Fecha adelanto"
+        placeholder="Fecha dd/mm/yyyy"
         onChangeText={(text) => setFechaAdelanto(text)}
         inputStyle={styles.input}
         errorMessage={errores.fechaAdelanto}

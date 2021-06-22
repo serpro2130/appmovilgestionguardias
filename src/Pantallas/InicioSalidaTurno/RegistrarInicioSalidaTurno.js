@@ -109,7 +109,7 @@ export default function RegistrarInicioSalidaTurno() {
         errorMessage={errores.puestoTrabajo}
       />
       <Input
-        placeholder="Fecha día/mes/año"
+        placeholder="Fecha dd/mm/yyyy"
         onChangeText={(text) => setFechaTurno(text)}
         inputStyle={styles.input}
         errorMessage={errores.fechaTurno}
