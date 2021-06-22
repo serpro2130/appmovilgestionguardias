@@ -12,6 +12,9 @@ import { map, size, filter, isEmpty } from "lodash";
 import { useNavigation } from "@react-navigation/native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { addRegistro, ObtenerUsuario } from "../../Utils/Acciones";
+
+import { Picker } from "native-base";
+
 //import DateTimePickerModal from "react-native-modal-datetime-picker";
 //import moment from "moment";
 
@@ -19,7 +22,8 @@ export default function RegistrarSolicitudesCliente() {
   const [nombreCliente, setNombreCliente] = useState("");
   const [direccion, setDireccion] = useState("");
   const [fecha, setFecha] = useState("");
-  //const [hora, setHora] = useState("");
+  const [hora, setHora] = useState(8);
+  //const [rol, setrol] = useState(1);
   const [tipoServicio, setTipoServicio] = useState("");
   const [numeroPuestos, setNumeroPuestos] = useState("");
   //const [formData, setFormData] = useState({});
@@ -148,12 +152,43 @@ export default function RegistrarSolicitudesCliente() {
         inputStyle={styles.input}
         errorMessage={errores.fecha}
       />
-      <Input
+      {/* <Input
         placeholder="Tipo servicio 24-12-8 horas"
         onChangeText={(text) => setTipoServicio(text)}
         inputStyle={styles.input}
         errorMessage={errores.tipoServicio}
-      />
+      /> */}
+      <View
+        style={{
+          width: "90%",
+          height: 90,
+          alignItems: "center",
+          flexDirection: "row",
+        }}
+      >
+        <Text
+          style={{
+            width: "40%",
+            fontSize: 16,
+            fontStyle: "italic",
+            marginLeft: 5,
+          }}
+        >
+          Seleccione el tipo de servicio
+        </Text>
+        <Picker
+          note
+          mode="dialog"
+          style={{ width: 100, height: 60 }}
+          selectedValue={hora}
+          onValueChange={(value) => setTipoServicio(value)}
+        >
+          <Picker.Item label="Escoja" value="0" />
+          <Picker.Item label="8 horas" value="8" />
+          <Picker.Item label="12 horas" value="12" />
+          <Picker.Item label="24 horas" value="24" />
+        </Picker>
+      </View>
       <Input
         placeholder="Numero puestos"
         onChangeText={(text) => setNumeroPuestos(text)}

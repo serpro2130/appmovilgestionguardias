@@ -98,9 +98,9 @@ function Solicitud(props) {
         </Text>
         <Text style={styles.fechaPresentacion}>Guardia {nombreGuardia}</Text>
         <Text style={styles.fechaPresentacion}>
-          Valor servicio: {precioServicio}
+          Valor servicio: ${precioServicio}
         </Text>
-        <Text style={styles.fechaPresentacion}>Valor total: {valorTotal}</Text>
+        <Text style={styles.fechaPresentacion}>Valor total: ${valorTotal}</Text>
       </View>
       <View style={styles.iconbar}>
         <View style={styles.iconedit}>
