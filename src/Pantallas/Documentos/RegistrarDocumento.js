@@ -110,6 +110,7 @@ export default function RegistrarDocumento() {
         inputStyle={styles.input}
         errorMessage={errores.fechaPresentacion}
         keyboardType="phone-pad"
+        maxLength={10}
       />
       <Input
         placeholder="Presentado dd/mm/yyyy"
@@ -117,6 +118,7 @@ export default function RegistrarDocumento() {
         inputStyle={styles.input}
         errorMessage={errores.fechaPresentada}
         keyboardType="phone-pad"
+        maxLength={10}
       />
       <Button
         title="Agregar Documento"

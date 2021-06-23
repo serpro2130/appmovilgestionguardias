@@ -109,6 +109,7 @@ export default function RegistrarTurno() {
         inputStyle={styles.input}
         errorMessage={errores.fechaTurno}
         keyboardType="phone-pad"
+        maxLength={10}
       />
       {/* <Input
         placeholder="Horario del turno"

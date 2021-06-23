@@ -115,6 +115,7 @@ export default function RegistrarCliente() {
         inputStyle={styles.input}
         errorMessage={errores.fechaInicioServicio}
         keyboardType="phone-pad"
+        maxLength={10}
       />
       {/* <Input
         placeholder="Tipo servicio"
@@ -159,6 +160,7 @@ export default function RegistrarCliente() {
         inputStyle={styles.input}
         errorMessage={errores.numeroPuestos}
         keyboardType="numeric"
+        maxLength={1}
       />
       <Button
         title="Agregar Cliente"

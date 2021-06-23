@@ -114,18 +114,21 @@ export default function RegistrarInicioSalidaTurnoGuardia() {
         inputStyle={styles.input}
         errorMessage={errores.fechaTurno}
         keyboardType="phone-pad"
+        maxLength={10}
       />
       <Input
         placeholder="Hora de entrada am o pm"
         onChangeText={(text) => setHoraEntrada(text)}
         inputStyle={styles.input}
         errorMessage={errores.horarioTurno}
+        maxLength={8}
       />
       <Input
         placeholder="Hora de salida am o pm"
         onChangeText={(text) => setHoraSalida(text)}
         inputStyle={styles.input}
         errorMessage={errores.horarioTurno}
+        maxLength={8}
       />
       <Button
         title="Agregar Inicio y Salida"

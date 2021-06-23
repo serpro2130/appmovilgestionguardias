@@ -151,6 +151,7 @@ export default function RegistrarSolicitudesCliente() {
         inputStyle={styles.input}
         errorMessage={errores.fecha}
         keyboardType="phone-pad"
+        maxLength={10}
       />
       {/* <Input
         placeholder="Tipo servicio 24-12-8 horas"
@@ -194,6 +195,8 @@ export default function RegistrarSolicitudesCliente() {
         onChangeText={(text) => setNumeroPuestos(text)}
         inputStyle={styles.input}
         errorMessage={errores.numeroPuestos}
+        keyboardType="numeric"
+        maxLength={1}
       />
       <Button
         title="Agregar Solicitud"

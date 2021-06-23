@@ -114,6 +114,7 @@ export default function RegistrarInicioSalidaTurno() {
         inputStyle={styles.input}
         errorMessage={errores.fechaTurno}
         keyboardType="phone-pad"
+        maxLength={10}
       />
       <Input
         placeholder="Hora de entrada am o pm"

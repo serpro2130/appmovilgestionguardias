@@ -127,13 +127,15 @@ export default function RegistrarGuardia() {
         inputStyle={styles.input}
         errorMessage={errores.cedula}
         keyboardType="number-pad"
+        maxLength={10}
       />
       <Input
         placeholder="Teléfono"
         onChangeText={(text) => setTelefono(text)}
         inputStyle={styles.input}
         errorMessage={errores.telefono}
-        keyboardType="phone-pad"
+        keyboardType="number-pad"
+        maxLength={10}
       />
       <Input
         placeholder="Dirección"
@@ -147,6 +149,7 @@ export default function RegistrarGuardia() {
         inputStyle={styles.input}
         errorMessage={errores.fechaIngreso}
         keyboardType="phone-pad"
+        maxLength={10}
       />
       <Input
         placeholder="Puesto de trabajo"

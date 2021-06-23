@@ -170,6 +170,7 @@ export default function ResponderSolicitud(props) {
         inputStyle={styles.input}
         errorMessage={errores.nombreGuardia}
         value={nombreGuardia}
+        maxLength={28}
       />
       <Button
         title="Responder Solicitud"

@@ -132,6 +132,7 @@ export default function EditarDocumento(props) {
         errorMessage={errores.fechaPresentacion}
         value={fechaPresentacion}
         keyboardType="phone-pad"
+        maxLength={10}
       />
       <Input
         placeholder="Presentado dd/mm/yyyy"
@@ -140,6 +141,7 @@ export default function EditarDocumento(props) {
         errorMessage={errores.fechaPresentada}
         value={fechaPresentada}
         keyboardType="phone-pad"
+        maxLength={10}
       />
       <Button
         title="Editar Documento"

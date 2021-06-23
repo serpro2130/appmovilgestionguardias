@@ -102,12 +102,14 @@ export default function RegistrarReporte() {
         onChangeText={(text) => setNombreGuardia(text)}
         inputStyle={styles.input}
         errorMessage={errores.nombreGuardia}
+        maxLength={15}
       />
       <Input
         placeholder="Puesto de trabajo"
         onChangeText={(text) => setPuestoTrabajo(text)}
         inputStyle={styles.input}
         errorMessage={errores.puestoTrabajo}
+        maxLength={2}
       />
       <Input
         placeholder="Fecha dd/mm/yyyy "
@@ -115,12 +117,14 @@ export default function RegistrarReporte() {
         inputStyle={styles.input}
         errorMessage={errores.fechaReporte}
         keyboardType="phone-pad"
+        maxLength={10}
       />
       <Input
         placeholder="Hora del reporte am o pm"
         onChangeText={(text) => setHoraReporte(text)}
         inputStyle={styles.input}
         errorMessage={errores.horaReporte}
+        maxLength={8}
       />
       <Input
         placeholder="Reporte 100% éxitos"

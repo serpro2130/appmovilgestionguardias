@@ -150,6 +150,7 @@ export default function EditarInicioSalidaTurnoGuardia(props) {
         inputStyle={styles.input}
         errorMessage={errores.horaEntrada}
         value={horaEntrada}
+        maxLength={8}
       />
       <View style={styles.viewText}>
         <Text style={styles.text}>Hora salida</Text>
@@ -161,6 +162,7 @@ export default function EditarInicioSalidaTurnoGuardia(props) {
         inputStyle={styles.input}
         errorMessage={errores.horaSalida}
         value={horaSalida}
+        maxLength={8}
       />
 
       <Button

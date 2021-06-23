@@ -118,6 +118,7 @@ export default function EditarAdelanto(props) {
         errorMessage={errores.fechaAdelanto}
         value={fechaAdelanto}
         keyboardType="phone-pad"
+        maxLength={10}
       />
       <Input
         placeholder="Monto adelanto"

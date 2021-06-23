@@ -140,6 +140,7 @@ export default function EditarInicioSalidaTurno(props) {
         errorMessage={errores.fechaTurno}
         value={fechaTurno}
         keyboardType="phone-pad"
+        maxLength={10}
       />
       <Text>Hora entrada</Text>
       <Input

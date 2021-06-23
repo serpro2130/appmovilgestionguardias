@@ -153,6 +153,7 @@ export default function EditarGuardia(props) {
         errorMessage={errores.cedula}
         value={cedula}
         keyboardType="numeric"
+        maxLength={10}
       />
       <Input
         placeholder="Teléfono"
@@ -161,6 +162,7 @@ export default function EditarGuardia(props) {
         errorMessage={errores.telefono}
         value={telefono}
         keyboardType="numeric"
+        maxLength={10}
       />
       <Input
         placeholder="Dirección"
@@ -176,6 +178,7 @@ export default function EditarGuardia(props) {
         errorMessage={errores.fechaIngreso}
         value={fechaIngreso}
         keyboardType="phone-pad"
+        maxLength={10}
       />
       <Input
         placeholder="Puesto de trabajo"

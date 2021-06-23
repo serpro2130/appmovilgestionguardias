@@ -96,6 +96,7 @@ export default function RegistrarAdelanto() {
         inputStyle={styles.input}
         errorMessage={errores.fechaAdelanto}
         keyboardType="phone-pad"
+        maxLength={10}
       />
       <Input
         placeholder="Monto adelanto"
@@ -103,6 +104,7 @@ export default function RegistrarAdelanto() {
         inputStyle={styles.input}
         errorMessage={errores.montoAdelanto}
         keyboardType="numeric"
+        maxLength={3}
       />
       <Button
         title="Agregar Adelanto"

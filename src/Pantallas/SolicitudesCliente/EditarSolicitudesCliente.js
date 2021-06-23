@@ -138,6 +138,7 @@ export default function EditarSolicitudesCliente(props) {
         errorMessage={errores.fecha}
         value={fecha}
         keyboardType="phone-pad"
+        maxLength={10}
       />
       <Input
         placeholder="Tipo servicio 24-12-8 horas"
@@ -145,6 +146,8 @@ export default function EditarSolicitudesCliente(props) {
         inputStyle={styles.input}
         errorMessage={errores.tipoServicio}
         value={tipoServicio}
+        keyboardType="numeric"
+        maxLength={2}
       />
       <Input
         placeholder="Numero puestos"
@@ -152,6 +155,8 @@ export default function EditarSolicitudesCliente(props) {
         inputStyle={styles.input}
         errorMessage={errores.numeroPuestos}
         value={numeroPuestos}
+        keyboardType="numeric"
+        maxLength={1}
       />
       <Button
         title="Editar Solicitud"

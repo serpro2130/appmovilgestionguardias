@@ -124,6 +124,7 @@ export default function EditarReporte(props) {
         inputStyle={styles.input}
         errorMessage={errores.nombreGuardia}
         value={nombreGuardia}
+        maxLength={15}
       />
       <Input
         placeholder="Puesto de trabajo"
@@ -131,6 +132,7 @@ export default function EditarReporte(props) {
         inputStyle={styles.input}
         errorMessage={errores.puestoTrabajo}
         value={puestoTrabajo}
+        maxLength={2}
       />
       <Input
         placeholder="Fecha dd/mm/yyyy"
@@ -139,6 +141,7 @@ export default function EditarReporte(props) {
         errorMessage={errores.fechaReporte}
         value={fechaReporte}
         keyboardType="phone-pad"
+        maxLength={10}
       />
       <Input
         placeholder="Hora del reporte"
@@ -146,6 +149,7 @@ export default function EditarReporte(props) {
         inputStyle={styles.input}
         errorMessage={errores.horaReporte}
         value={horaReporte}
+        maxLength={8}
       />
       <Input
         placeholder="Reporte de la guardia"
