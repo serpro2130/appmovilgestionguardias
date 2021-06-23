@@ -109,19 +109,20 @@ export default function RegistrarInicioSalidaTurnoGuardia() {
         errorMessage={errores.puestoTrabajo}
       />
       <Input
-        placeholder="Fecha del turno"
+        placeholder="Fecha dd/mm/yyyy"
         onChangeText={(text) => setFechaTurno(text)}
         inputStyle={styles.input}
         errorMessage={errores.fechaTurno}
+        keyboardType="phone-pad"
       />
       <Input
-        placeholder="Hora de entrada"
+        placeholder="Hora de entrada am o pm"
         onChangeText={(text) => setHoraEntrada(text)}
         inputStyle={styles.input}
         errorMessage={errores.horarioTurno}
       />
       <Input
-        placeholder="Hora de salida"
+        placeholder="Hora de salida am o pm"
         onChangeText={(text) => setHoraSalida(text)}
         inputStyle={styles.input}
         errorMessage={errores.horarioTurno}

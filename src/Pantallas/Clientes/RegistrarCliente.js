@@ -114,6 +114,7 @@ export default function RegistrarCliente() {
         onChangeText={(text) => setFechaInicioServicio(text)}
         inputStyle={styles.input}
         errorMessage={errores.fechaInicioServicio}
+        keyboardType="phone-pad"
       />
       {/* <Input
         placeholder="Tipo servicio"
@@ -157,6 +158,7 @@ export default function RegistrarCliente() {
         onChangeText={(text) => setNumeroPuestos(text)}
         inputStyle={styles.input}
         errorMessage={errores.numeroPuestos}
+        keyboardType="numeric"
       />
       <Button
         title="Agregar Cliente"

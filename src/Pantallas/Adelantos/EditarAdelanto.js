@@ -117,6 +117,7 @@ export default function EditarAdelanto(props) {
         inputStyle={styles.input}
         errorMessage={errores.fechaAdelanto}
         value={fechaAdelanto}
+        keyboardType="phone-pad"
       />
       <Input
         placeholder="Monto adelanto"
@@ -124,6 +125,7 @@ export default function EditarAdelanto(props) {
         inputStyle={styles.input}
         errorMessage={errores.montoAdelanto}
         value={montoAdelanto}
+        keyboardType="numeric"
       />
       <Button
         title="Editar Adelanto"

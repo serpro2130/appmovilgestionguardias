@@ -137,6 +137,7 @@ export default function EditarSolicitudesCliente(props) {
         inputStyle={styles.input}
         errorMessage={errores.fecha}
         value={fecha}
+        keyboardType="phone-pad"
       />
       <Input
         placeholder="Tipo servicio 24-12-8 horas"

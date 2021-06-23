@@ -114,6 +114,7 @@ export default function RegistrarReporte() {
         onChangeText={(text) => setFechaReporte(text)}
         inputStyle={styles.input}
         errorMessage={errores.fechaReporte}
+        keyboardType="phone-pad"
       />
       <Input
         placeholder="Hora del reporte am o pm"

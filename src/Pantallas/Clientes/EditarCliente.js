@@ -137,6 +137,7 @@ export default function EditarCliente(props) {
         inputStyle={styles.input}
         errorMessage={errores.fechaInicioServicio}
         value={fechaInicioServicio}
+        keyboardType="phone-pad"
       />
       <Input
         placeholder="Tipo servicio"
@@ -151,6 +152,7 @@ export default function EditarCliente(props) {
         inputStyle={styles.input}
         errorMessage={errores.numeroPuestos}
         value={numeroPuestos}
+        keyboardType="numeric"
       />
       <Button
         title="Editar Cliente"

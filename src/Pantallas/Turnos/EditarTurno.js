@@ -131,6 +131,7 @@ export default function EditarTurno(props) {
         inputStyle={styles.input}
         errorMessage={errores.fechaTurno}
         value={fechaTurno}
+        keyboardType="phone-pad"
       />
       <Input
         placeholder="Horario del turno"

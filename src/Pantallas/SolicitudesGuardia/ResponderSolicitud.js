@@ -68,7 +68,7 @@ export default function ResponderSolicitud(props) {
       });
     } else if (isEmpty(nombreGuardia)) {
       setErrores({
-        nombreGuardia: "El campo tipo de puestos es obligatorio",
+        nombreGuardia: "El campo nombre de guardia es obligatorio",
       });
     } else {
       const documento = {

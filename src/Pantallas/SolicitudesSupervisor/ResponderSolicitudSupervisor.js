@@ -158,6 +158,7 @@ export default function ResponderSolicitudSupervisor(props) {
         inputStyle={styles.input}
         errorMessage={errores.fecha}
         value={fecha}
+        keyboardType="phone-pad"
       />
       <Input
         placeholder="Tipo servicio 24-12-8 horas"
@@ -165,6 +166,7 @@ export default function ResponderSolicitudSupervisor(props) {
         inputStyle={styles.input}
         errorMessage={errores.tipoServicio}
         value={tipoServicio}
+        keyboardType="numeric"
       />
       <Input
         placeholder="Numero puestos"
@@ -172,6 +174,7 @@ export default function ResponderSolicitudSupervisor(props) {
         inputStyle={styles.input}
         errorMessage={errores.numeroPuestos}
         value={numeroPuestos}
+        keyboardType="numeric"
       />
       <Input
         placeholder="Nombre Guardia"
@@ -186,6 +189,7 @@ export default function ResponderSolicitudSupervisor(props) {
         inputStyle={styles.input}
         errorMessage={errores.precioServicio}
         value={precioServicio}
+        keyboardType="numeric"
       />
       <Input
         placeholder="Valor total del servicio"
@@ -195,6 +199,7 @@ export default function ResponderSolicitudSupervisor(props) {
         inputStyle={styles.input}
         errorMessage={errores.valorTotal}
         value={valorTotal}
+        keyboardType="numeric"
       />
       <Button
         title="Responder Solicitud"

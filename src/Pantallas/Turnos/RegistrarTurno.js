@@ -108,6 +108,7 @@ export default function RegistrarTurno() {
         onChangeText={(text) => setFechaTurno(text)}
         inputStyle={styles.input}
         errorMessage={errores.fechaTurno}
+        keyboardType="phone-pad"
       />
       {/* <Input
         placeholder="Horario del turno"

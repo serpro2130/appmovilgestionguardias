@@ -150,6 +150,7 @@ export default function RegistrarSolicitudesCliente() {
         onChangeText={(text) => setFecha(text)}
         inputStyle={styles.input}
         errorMessage={errores.fecha}
+        keyboardType="phone-pad"
       />
       {/* <Input
         placeholder="Tipo servicio 24-12-8 horas"

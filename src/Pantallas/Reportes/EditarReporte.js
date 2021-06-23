@@ -138,6 +138,7 @@ export default function EditarReporte(props) {
         inputStyle={styles.input}
         errorMessage={errores.fechaReporte}
         value={fechaReporte}
+        keyboardType="phone-pad"
       />
       <Input
         placeholder="Hora del reporte"

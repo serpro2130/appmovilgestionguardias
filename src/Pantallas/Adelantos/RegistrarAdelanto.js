@@ -95,12 +95,14 @@ export default function RegistrarAdelanto() {
         onChangeText={(text) => setFechaAdelanto(text)}
         inputStyle={styles.input}
         errorMessage={errores.fechaAdelanto}
+        keyboardType="phone-pad"
       />
       <Input
         placeholder="Monto adelanto"
         onChangeText={(text) => setMontoAdelanto(text)}
         inputStyle={styles.input}
         errorMessage={errores.montoAdelanto}
+        keyboardType="numeric"
       />
       <Button
         title="Agregar Adelanto"

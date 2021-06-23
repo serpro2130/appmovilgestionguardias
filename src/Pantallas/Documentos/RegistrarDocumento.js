@@ -109,12 +109,14 @@ export default function RegistrarDocumento() {
         onChangeText={(text) => setFechaPresentacion(text)}
         inputStyle={styles.input}
         errorMessage={errores.fechaPresentacion}
+        keyboardType="phone-pad"
       />
       <Input
         placeholder="Presentado dd/mm/yyyy"
         onChangeText={(text) => setFechaPresentada(text)}
         inputStyle={styles.input}
         errorMessage={errores.fechaPresentada}
+        keyboardType="phone-pad"
       />
       <Button
         title="Agregar Documento"
