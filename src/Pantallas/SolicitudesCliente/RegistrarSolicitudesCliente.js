@@ -53,7 +53,7 @@ export default function RegistrarSolicitudesCliente() {
         direccion: "El campo dirección es obligatorio",
       });
     } else if (!locationCliente) {
-      toastRef.current.show("Tienes que localizar el restaurnate en el mapa");
+      toastRef.current.show("Por favor localizar dirección en el mapa");
     } else if (isEmpty(fecha)) {
       setErrores({
         fecha: "El campo fecha es obligatorio",
