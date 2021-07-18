@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { StyleSheet, Text, View, Alert, TouchableOpacity } from "react-native";
 import {
   Input,
@@ -11,8 +11,14 @@ import {
 import { map, size, filter, isEmpty } from "lodash";
 import { useNavigation } from "@react-navigation/native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
-import { addRegistro, ObtenerUsuario } from "../../Utils/Acciones";
 import { Picker } from "native-base";
+import * as Permissions from "expo-permissions";
+import * as Location from "expo-location";
+import MapView from "react-native-maps";
+import Toast from "react-native-easy-toast";
+
+import Modal from "../../Components/Modal";
+import { addRegistro, ObtenerUsuario } from "../../Utils/Acciones";
 
 //import DateTimePickerModal from "react-native-modal-datetime-picker";
 //import moment from "moment";
@@ -27,8 +33,11 @@ export default function RegistrarSolicitudesCliente() {
   const [numeroPuestos, setNumeroPuestos] = useState("");
   //const [formData, setFormData] = useState({});
   const [isDatePicketVisible, setIsDatePicketVisible] = useState(false);
+  const [isVisibleMap, setIsVisibleMap] = useState(false);
+  const [locationCliente, setLocationCliente] = useState(null);
   const [errores, setErrores] = useState({});
   const btnref = useRef();
+  const toastRef = useRef();
   const navigation = useNavigation();
 
   //console.log(formData);
@@ -43,6 +52,8 @@ export default function RegistrarSolicitudesCliente() {
       setErrores({
         direccion: "El campo dirección es obligatorio",
       });
+    } else if (!locationCliente) {
+      toastRef.current.show("Tienes que localizar el restaurnate en el mapa");
     } else if (isEmpty(fecha)) {
       setErrores({
         fecha: "El campo fecha es obligatorio",
@@ -59,6 +70,7 @@ export default function RegistrarSolicitudesCliente() {
       const documento = {
         nombreCliente,
         direccion,
+        locationCliente,
         fecha,
         tipoServicio,
         numeroPuestos,
@@ -93,6 +105,7 @@ export default function RegistrarSolicitudesCliente() {
         );
       }
     }
+    //   console.log(locationRestaurant);
   };
 
   // const hideDatePicker = () => {
@@ -113,6 +126,7 @@ export default function RegistrarSolicitudesCliente() {
 
   return (
     <KeyboardAwareScrollView style={styles.conteiner}>
+      <Toast ref={toastRef} position="center" opacity={0.9} />
       <View
         style={{
           borderBottomColor: "#f07218",
@@ -129,8 +143,14 @@ export default function RegistrarSolicitudesCliente() {
         errorMessage={errores.nombreCliente}
       />
       <Input
-        placeholder="Dirección"
+        placeholder="Dirección Cliente"
         onChangeText={(text) => setDireccion(text)}
+        rightIcon={{
+          type: "material-community",
+          name: "google-maps",
+          color: locationCliente ? "#f07218" : "#c2c2c2",
+          onPress: () => setIsVisibleMap(true),
+        }}
         inputStyle={styles.input}
         errorMessage={errores.direccion}
       />
@@ -204,7 +224,87 @@ export default function RegistrarSolicitudesCliente() {
         ref={btnref}
         onPress={addDocumento}
       />
+      <Map
+        isVisibleMap={isVisibleMap}
+        setIsVisibleMap={setIsVisibleMap}
+        setLocationCliente={setLocationCliente}
+        toastRef={toastRef}
+      />
     </KeyboardAwareScrollView>
+  );
+}
+
+function Map(props) {
+  const { isVisibleMap, setIsVisibleMap, setLocationCliente, toastRef } = props;
+  const [location, setLocation] = useState(null);
+
+  useEffect(() => {
+    (async () => {
+      const resultPermissions = await Permissions.askAsync(
+        Permissions.LOCATION
+      );
+      const statusPermissions = resultPermissions.permissions.location.status;
+      if (statusPermissions !== "granted") {
+        toastRef.current.show(
+          "Tienes que aceptar los permisos de localizacion para crear un restaurante",
+          3000
+        );
+        console.log("Permisos");
+      } else {
+        const loc = await Location.getCurrentPositionAsync({});
+        console.log(loc);
+        setLocation({
+          latitude: loc.coords.latitude,
+          longitude: loc.coords.longitude,
+          latitudeDelta: 0.001,
+          longitudeDelta: 0.001,
+        });
+      }
+    })();
+  }, []);
+
+  const confirmLocation = () => {
+    setLocationCliente(location);
+    toastRef.current.show("Localizacion guardada correctamente");
+    console.log("Localizacion guardada correctamente");
+    setIsVisibleMap(false);
+  };
+
+  return (
+    <Modal isVisible={isVisibleMap} setIsVisible={setIsVisibleMap}>
+      <View>
+        {location && (
+          <MapView
+            style={styles.mapStyle}
+            initialRegion={location}
+            showsUserLocation={true}
+            onRegionChange={(region) => setLocation(region)}
+          >
+            <MapView.Marker
+              coordinate={{
+                latitude: location.latitude,
+                longitude: location.longitude,
+              }}
+              draggable
+            />
+          </MapView>
+        )}
+        <View style={styles.viewMapBtn}>
+          <Button
+            title="Guardar Ubicacion"
+            containerStyle={styles.viewMapBtnContainerSave}
+            buttonStyle={styles.viewMapBtnSave}
+            onPress={confirmLocation}
+          />
+          <Button
+            title="Cancelar Ubicacion"
+            containerStyle={styles.viewMapBtnContainerCancel}
+            buttonStyle={styles.viewMapBtnCancel}
+            onPress={() => setIsVisibleMap(false)}
+          />
+        </View>
+      </View>
+    </Modal>
   );
 }
 
@@ -250,5 +350,26 @@ const styles = StyleSheet.create({
   addButton: {
     fontSize: 18,
     color: "#fff",
+  },
+  mapStyle: {
+    width: "100%",
+    height: 550,
+  },
+  viewMapBtn: {
+    flexDirection: "row",
+    justifyContent: "center",
+    marginTop: 10,
+  },
+  viewMapBtnContainerCancel: {
+    paddingLeft: 5,
+  },
+  viewMapBtnCancel: {
+    backgroundColor: "#a60d0d",
+  },
+  viewMapBtnContainerSave: {
+    paddingRight: 5,
+  },
+  viewMapBtnSave: {
+    backgroundColor: "#f07218",
   },
 });
