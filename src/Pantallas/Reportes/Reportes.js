@@ -1,18 +1,72 @@
 import React, { useState, useEffect, useCallback } from "react";
+import { firebaseapp } from "../../Utils/Firebase";
+import * as firebase from "firebase";
+import "firebase/firestore";
 import { View, Text, StyleSheet, FlatList, Image, Alert } from "react-native";
 import { Avatar, Icon } from "react-native-elements";
 import { useNavigation, useFocusEffect } from "@react-navigation/native";
 
-import { ListarReportes, eliminarProducto } from "../../Utils/Acciones";
+import {
+  ListarReportes,
+  eliminarProducto,
+  numReportes,
+  ordernReportes,
+} from "../../Utils/Acciones";
+import ListReportes from "../../Components/ListReportes";
+
+const db = firebase.firestore(firebaseapp);
+const limitReportes = 12;
 
 export default function Reportes() {
   const navigation = useNavigation();
   const [reportes, setReportes] = useState({});
+  const [reportesOrd, setReportesOrd] = useState([]);
+  const [totalReportes, setTotalReportes] = useState(0);
+  const [startReportes, setStartReportes] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+  //console.log(totalReportes);
+  //console.log(reportesOrd);
+
   useEffect(() => {
     (async () => {
       setReportes(await ListarReportes());
     })();
   }, []);
+
+  // useFocusEffect(
+  //   useCallback(() => {
+  //     //   // (async () => {
+  //     //   //   setTotalReportes(await numReportes());
+  //     //   // })();
+
+  //     //   // const resultReportes = [];
+  //     //   // (async () => {
+  //     //   //   setStartReportes(await ordernReportes());
+  //     //   //   setReportesOrd(await ordernReportes());
+  //     //   // })();
+  //     db.collection("Reportes")
+  //       .get()
+  //       .then((snap) => {
+  //         setTotalReportes(snap.size);
+  //       });
+
+  //     const resultReportes = [];
+
+  //     db.collection("Reportes")
+  //       .orderBy("fechacreacion", "desc")
+  //       .limit(limitReportes)
+  //       .get()
+  //       .then((response) => {
+  //         setStartReportes(response.docs[response.docs.leght - 1]);
+  //         response.forEach((doc) => {
+  //           const report = doc.data();
+  //           report.id = doc.id;
+  //           resultReportes.push(report);
+  //         });
+  //         setReportesOrd(resultReportes);
+  //       });
+  //   }, [])
+  // );
 
   useFocusEffect(
     useCallback(() => {
@@ -21,6 +75,31 @@ export default function Reportes() {
       })();
     }, [])
   );
+
+  // const handleLoadMore = () => {
+  //   const resultReportes = [];
+  //   reportesOrd.length < totalReportes && setIsLoading(true);
+
+  //   db.collection("Reportes")
+  //     .orderBy("fechacreacion", "desc")
+  //     .startAfter(startReportes.data().fechacreacion)
+  //     .limit(limitReportes)
+  //     .get()
+  //     .then((response) => {
+  //       if (response.docs.length > 0) {
+  //         setStartReportes(response.docs[response.docs.leght - 1]);
+  //       } else {
+  //         setIsLoading(false);
+  //       }
+  //       response.forEach((doc) => {
+  //         const report = doc.data();
+  //         report.id = doc.id;
+  //         resultReportes.push(report);
+  //       });
+  //       setReportesOrd([...reportesOrd, ...resultReportes]);
+  //     });
+  // };
+
   return (
     <View style={{ flex: 1, justifyContent: "center" }}>
       {reportes.length > 0 ? (
@@ -54,14 +133,15 @@ export default function Reportes() {
               style={{ margin: 10 }}
             />
             {/* <Avatar
-              rounded
-              size="xlarge"
-              source={require("../../../assets/serproemcam.png")}
-              // onPress={() => props.navigation.toggleDrawer()}
-            /> */}
+               rounded
+               size="xlarge"
+               source={require("../../../assets/serproemcam.png")}
+               // onPress={() => props.navigation.toggleDrawer()}
+             /> */}
           </View>
         </View>
       )}
+
       <Icon
         name="plus"
         type="material-community"
@@ -73,6 +153,24 @@ export default function Reportes() {
         reverse
       />
     </View>
+
+    // <View style={styles.viewBody}>
+    //   <ListReportes
+    //     reportesOrd={reportesOrd}
+    //     handleLoadMore={handleLoadMore}
+    //     isLoading={isLoading}
+    //   />
+    //   <Icon
+    //     name="plus"
+    //     type="material-community"
+    //     color="#f07218"
+    //     containerStyle={styles.btncontainer}
+    //     onPress={() => {
+    //       navigation.navigate("RegistrarReporte");
+    //     }}
+    //     reverse
+    //   />
+    // </View>
   );
 }
 
@@ -142,6 +240,10 @@ function Reporte(props) {
 }
 
 const styles = StyleSheet.create({
+  viewBody: {
+    flex: 1,
+    backgroundColor: "#fff",
+  },
   btncontainer: {
     position: "absolute",
     bottom: 10,

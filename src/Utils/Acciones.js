@@ -14,6 +14,7 @@ import { FireSQL } from "firesql";
 
 const db = firebase.firestore(firebaseapp);
 const fireSQL = new FireSQL(firebase.firestore(), { includeId: "id" });
+const limitReportes = 12;
 
 Notifications.setNotificationHandler({
   handleNotification: async () => ({
@@ -362,7 +363,8 @@ export const ListarTurnos = async () => {
 
   await db
     .collection("Turnos")
-    .where("status", "==", 1)
+    //  .where("status", "==", 1)
+    .orderBy("fechacreacion", "desc")
     .get()
     .then((response) => {
       response.forEach((doc) => {
@@ -404,7 +406,8 @@ export const ListarReportes = async () => {
 
   await db
     .collection("Reportes")
-    .where("status", "==", 1)
+    //.where("status", "==", 1)
+    .orderBy("fechacreacion", "desc")
     .get()
     .then((response) => {
       response.forEach((doc) => {
@@ -419,6 +422,68 @@ export const ListarReportes = async () => {
 
   return reportes;
 };
+
+export const numReportes = async () => {
+  let totalReportes;
+
+  await db
+    .collection("Reportes")
+    .get()
+    .then((snap) => {
+      totalReportes = snap.size;
+    });
+
+  return totalReportes;
+};
+
+export const ordernReportes = async () => {
+  const resultReportes = [];
+  let startReportes;
+  await db
+    .collection("Reportes")
+    .orderBy("fechacreacion", "desc")
+    .limit(limitReportes)
+    .get()
+    .then((response) => {
+      startReportes = response.docs[response.docs.leght - 1];
+      response.forEach((doc) => {
+        // console.log(doc.data());
+        // console.log(doc.id);
+        const report = doc.data();
+        report.id = doc.id;
+        //   console.log(report);
+        resultReportes.push(report);
+      });
+    });
+  return startReportes, resultReportes;
+};
+
+// export const siguientesReportes = async ()=>{
+//   const resultReportes = [];
+//   let startReportes;
+//   let isLoading=false;
+//   await db
+//     .collection("Reportes")
+//     .orderBy("fechacreacion", "desc")
+//     .limit(limitReportes)
+//     .get()
+//     .then((response) => {
+//       if(response.docs.length > 0){
+//         startReportes = response.docs[response.docs.leght - 1];
+//       }else{
+//         isLoading
+//       }
+//       response.forEach((doc) => {
+//         // console.log(doc.data());
+//         // console.log(doc.id);
+//         const report = doc.data();
+//         report.id = doc.id;
+//         //   console.log(report);
+//         resultReportes.push({report});
+//       });
+//     });
+//   return startReportes, resultReportes;
+// }
 
 export const ListarAdelantos = async () => {
   let adelantos = [];
@@ -565,11 +630,10 @@ export const iniciarnotificaciones = (
     }
   );
 
-  responseListener.current = Notifications.addNotificationResponseReceivedListener(
-    (response) => {
+  responseListener.current =
+    Notifications.addNotificationResponseReceivedListener((response) => {
       console.log(response);
-    }
-  );
+    });
 
   return () => {
     Notifications.removeNotificationSubscription(notificationListener);
