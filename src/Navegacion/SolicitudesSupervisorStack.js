@@ -6,6 +6,8 @@ import { useNavigation } from "@react-navigation/native";
 
 import SolicitudesSupervisor from "../Pantallas/SolicitudesSupervisor/SolicitudesSupervisor";
 import ResponderSolicitudSupervisor from "../Pantallas/SolicitudesSupervisor/ResponderSolicitudSupervisor";
+import Solicitud from "../Pantallas/SolicitudesSupervisor/Solicitud";
+
 const Stack = createStackNavigator();
 
 export default function SolicitudesSupervisorStack() {
@@ -37,6 +39,8 @@ export default function SolicitudesSupervisorStack() {
         name="ResponderSolicitudSupervisor"
         options={{ title: "Responder solicitud" }}
       />
+
+      <Stack.Screen component={Solicitud} name="Solicitud" />
     </Stack.Navigator>
   );
 }

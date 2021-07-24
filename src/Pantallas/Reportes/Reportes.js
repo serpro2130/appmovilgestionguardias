@@ -15,7 +15,6 @@ import {
 import ListReportes from "../../Components/ListReportes";
 
 const db = firebase.firestore(firebaseapp);
-const limitReportes = 12;
 
 export default function Reportes() {
   const navigation = useNavigation();
@@ -24,6 +23,7 @@ export default function Reportes() {
   const [totalReportes, setTotalReportes] = useState(0);
   const [startReportes, setStartReportes] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+  // const limitReportes = 12;
   //console.log(totalReportes);
   //console.log(reportesOrd);
 

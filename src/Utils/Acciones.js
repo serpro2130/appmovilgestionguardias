@@ -301,7 +301,8 @@ export const ListarSolicitudes = async () => {
 
   await db
     .collection("Solicitudes")
-    .where("status", "==", 1)
+    //.where("status", "==", 1)
+    .orderBy("fechacreacion", "desc")
     .get()
     .then((response) => {
       response.forEach((doc) => {
